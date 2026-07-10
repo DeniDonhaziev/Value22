@@ -5,7 +5,12 @@ require('dotenv').config();
 types.setTypeParser(1700, (v) => (v === null ? null : parseFloat(v))); // numeric
 types.setTypeParser(20, (v) => (v === null ? null : parseInt(v, 10))); // bigint (count/avg)
 
-const connectionString = process.env.DATABASE_URL;
+// Убираем channel_binding — драйвер pg не поддерживает SCRAM channel binding,
+// иначе подключение к Neon падает при старте.
+const sanitizeUrl = (url) =>
+  !url ? url : url.replace(/([?&])channel_binding=[^&]*&?/gi, '$1').replace(/[?&]$/, '');
+
+const connectionString = sanitizeUrl(process.env.DATABASE_URL);
 if (!connectionString) {
   console.warn('⚠️  DATABASE_URL не задан. Укажите строку подключения Neon Postgres в переменных окружения.');
 }
