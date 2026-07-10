@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testShops()">Test Shops API</button>
+    <button onclick="testProducts()">Test Products API</button>
+    <div id="result"></div>
+
+    <script>
+        async function testShops() {
+            try {
+                const response = await fetch('http://localhost:5000/api/shops');
+                const data = await response.json();
+                document.getElementById('result').innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+            } catch (error) {
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+        }
+
+        async function testProducts() {
+            try {
+                // Сначала получаем магазины
+                const shopsResponse = await fetch('http://localhost:5000/api/shops');
+                const shopsData = await shopsResponse.json();
+                
+                if (shopsData.shops.length > 0) {
+                    const firstShop = shopsData.shops[0];
+                    const productsResponse = await fetch(`http://localhost:5000/api/shops/${firstShop.id}/products`);
+                    const productsData = await productsResponse.json();
+                    document.getElementById('result').innerHTML = '<pre>' + JSON.stringify(productsData, null, 2) + '</pre>';
+                } else {
+                    document.getElementById('result').innerHTML = 'No shops found';
+                }
+            } catch (error) {
+                document.getElementById('result').innerHTML = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</body>
+</html>
+

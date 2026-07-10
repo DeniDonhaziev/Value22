@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: value-marketplace
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18.20.4
+      - key: DATABASE_URL
+        sync: false            # строка подключения Neon (задать в дашборде)
+      - key: JWT_SECRET
+        generateValue: true    # Render сгенерирует секрет
+      - key: NODE_ENV
+        value: production

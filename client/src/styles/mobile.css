@@ -1,0 +1,857 @@
+/* Дополнительные стили для мобильной оптимизации */
+
+/* Базовые мобильные стили */
+@media (max-width: 768px) {
+  /* Улучшенная типографика для мобильных */
+  body {
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+
+  /* Улучшенные заголовки */
+  h1 {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 0.875rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+
+  /* Улучшенные параграфы */
+  p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Улучшенные кнопки */
+  .btn, button {
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 12px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Улучшенные инпуты */
+  input, textarea, select {
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #e5e7eb;
+    background-color: #ffffff;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  }
+
+  /* Улучшенные карточки */
+  .card {
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  /* Улучшенные навигационные элементы */
+  .nav-item {
+    min-height: 48px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+
+  /* Улучшенные иконки */
+  .icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  /* Улучшенные списки */
+  ul, ol {
+    padding-left: 20px;
+    margin-bottom: 16px;
+  }
+
+  li {
+    margin-bottom: 8px;
+    line-height: 1.6;
+  }
+
+  /* Улучшенные ссылки */
+  a {
+    color: #3b82f6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+
+  /* Улучшенные изображения */
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  /* Улучшенные таблицы */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 16px;
+    font-size: 14px;
+  }
+
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  th {
+    background-color: #f9fafb;
+    font-weight: 600;
+  }
+
+  /* Улучшенные формы */
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+  }
+
+  .form-error {
+    color: #dc2626;
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  /* Улучшенные уведомления */
+  .alert {
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+    border: 1px solid;
+  }
+
+  .alert-success {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+  }
+
+  .alert-error {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #dc2626;
+  }
+
+  .alert-warning {
+    background-color: #fffbeb;
+    border-color: #fed7aa;
+    color: #d97706;
+  }
+
+  .alert-info {
+    background-color: #eff6ff;
+    border-color: #bfdbfe;
+    color: #1d4ed8;
+  }
+
+  /* Улучшенные модальные окна */
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 16px;
+  }
+
+  .modal-content {
+    background-color: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Улучшенные тултипы */
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .tooltip .tooltip-text {
+    visibility: hidden;
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+  }
+
+  /* Улучшенные спиннеры загрузки */
+  .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #e5e7eb;
+    border-radius: 50%;
+    border-top-color: #3b82f6;
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Улучшенные скелетоны загрузки */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Улучшенные бейджи */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-primary {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+  }
+
+  .badge-success {
+    background-color: #d1fae5;
+    color: #065f46;
+  }
+
+  .badge-warning {
+    background-color: #fef3c7;
+    color: #92400e;
+  }
+
+  .badge-error {
+    background-color: #fee2e2;
+    color: #991b1b;
+  }
+
+  /* Улучшенные прогресс бары */
+  .progress {
+    width: 100%;
+    height: 8px;
+    background-color: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar {
+    height: 100%;
+    background-color: #3b82f6;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+
+  /* Улучшенные переключатели */
+  .toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 24px;
+  }
+
+  .toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.3s;
+    border-radius: 24px;
+  }
+
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+  }
+
+  input:checked + .toggle-slider {
+    background-color: #3b82f6;
+  }
+
+  input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+  }
+
+  /* Улучшенные чекбоксы */
+  .checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .checkbox input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    accent-color: #3b82f6;
+  }
+
+  .checkbox label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Улучшенные радио кнопки */
+  .radio {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .radio input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    accent-color: #3b82f6;
+  }
+
+  .radio label {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  /* Улучшенные селекты */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+
+  /* Улучшенные текстовые области */
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+  }
+
+  /* Улучшенные поля поиска */
+  .search-input {
+    position: relative;
+  }
+
+  .search-input input {
+    padding-left: 40px;
+  }
+
+  .search-input::before {
+    content: "🔍";
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #9ca3af;
+    pointer-events: none;
+  }
+
+  /* Улучшенные хлебные крошки */
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  .breadcrumb-item {
+    display: flex;
+    align-items: center;
+  }
+
+  .breadcrumb-item:not(:last-child)::after {
+    content: ">";
+    margin: 0 8px;
+    color: #d1d5db;
+  }
+
+  .breadcrumb-item a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+
+  .breadcrumb-item a:hover {
+    text-decoration: underline;
+  }
+
+  /* Улучшенные пагинации */
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 24px 0;
+  }
+
+  .pagination-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin: 0 4px;
+    border-radius: 8px;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .pagination-item:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+  }
+
+  .pagination-item.active {
+    background-color: #3b82f6;
+    border-color: #3b82f6;
+    color: white;
+  }
+
+  .pagination-item.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  /* Улучшенные табы */
+  .tabs {
+    display: flex;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 16px;
+  }
+
+  .tab {
+    padding: 12px 16px;
+    border-bottom: 2px solid transparent;
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+
+  .tab:hover {
+    color: #374151;
+  }
+
+  .tab.active {
+    color: #3b82f6;
+    border-bottom-color: #3b82f6;
+  }
+
+  /* Улучшенные аккордеоны */
+  .accordion {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .accordion-item:last-child {
+    border-bottom: none;
+  }
+
+  .accordion-header {
+    padding: 16px;
+    background-color: #f9fafb;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+  }
+
+  .accordion-content {
+    padding: 16px;
+    background-color: white;
+  }
+
+  /* Улучшенные слайдеры */
+  .slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: #e5e7eb;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #3b82f6;
+    cursor: pointer;
+  }
+
+  .slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #3b82f6;
+    cursor: pointer;
+    border: none;
+  }
+
+  /* Улучшенные карусели */
+  .carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .carousel-container {
+    display: flex;
+    transition: transform 0.3s ease;
+  }
+
+  .carousel-item {
+    flex: 0 0 100%;
+    padding: 16px;
+  }
+
+  .carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .carousel-prev {
+    left: 16px;
+  }
+
+  .carousel-next {
+    right: 16px;
+  }
+
+  /* Улучшенные дропдауны */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+  }
+
+  .dropdown-item {
+    padding: 12px 16px;
+    display: block;
+    color: #374151;
+    text-decoration: none;
+    border-bottom: 1px solid #f3f4f6;
+  }
+
+  .dropdown-item:last-child {
+    border-bottom: none;
+  }
+
+  .dropdown-item:hover {
+    background-color: #f9fafb;
+  }
+
+  /* Улучшенные уведомления */
+  .notification {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    max-width: 300px;
+    animation: slideIn 0.3s ease;
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  /* Улучшенные скелетоны */
+  .skeleton-text {
+    height: 16px;
+    background: #f3f4f6;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  .skeleton-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .skeleton-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f3f4f6;
+  }
+
+  .skeleton-image {
+    width: 100%;
+    height: 200px;
+    border-radius: 12px;
+    background: #f3f4f6;
+  }
+
+  /* Улучшенные анимации */
+  .fade-in {
+    animation: fadeIn 0.3s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .slide-up {
+    animation: slideUp 0.3s ease;
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .scale-in {
+    animation: scaleIn 0.3s ease;
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  /* Улучшенные утилиты */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Планшетные стили */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .btn, button {
+    min-height: 44px;
+    padding: 10px 20px;
+  }
+
+  input, textarea, select {
+    min-height: 44px;
+    padding: 10px 16px;
+  }
+}
+
+/* Стили для устройств с высоким DPI */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .icon {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Стили для устройств с темной темой */
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #f9fafb;
+  }
+
+  input, textarea, select {
+    background-color: #374151;
+    border-color: #4b5563;
+    color: #f9fafb;
+  }
+
+  .btn {
+    background-color: #3b82f6;
+    color: white;
+  }
+}
+
+/* Стили для устройств с уменьшенным движением */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Стили для устройств с высоким контрастом */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+
+  input, textarea, select {
+    border: 2px solid currentColor;
+  }
+}

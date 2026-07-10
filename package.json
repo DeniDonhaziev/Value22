@@ -1,0 +1,23 @@
+{
+  "name": "value-marketplace",
+  "version": "1.0.0",
+  "description": "Value Marketplace - платформа для покупок и продаж",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd server && npm start",
+    "server": "cd server && npm start",
+    "client": "cd client && npm start",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "build": "cd client && npm install && CI=false npm run build && cd ../server && npm install"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["marketplace", "ecommerce", "react", "node"],
+  "author": "Value Team",
+  "license": "MIT"
+}
