@@ -195,18 +195,17 @@ const MyShops: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {shops.map((shop) => (
               <div key={shop.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-shadow overflow-hidden">
-                {/* Shop Header */}
-                <div className="relative h-48 bg-gradient-to-r from-primary-500 to-primary-600">
+                {/* Shop Header — логотип целиком по центру, с отступами */}
+                <div className="relative h-48 bg-ink-50 flex items-center justify-center p-6 overflow-hidden">
                   {shop.logo_url ? (
                     <img
                       src={shop.logo_url}
                       alt={shop.name}
-                      className="w-full h-full object-cover"
+                      className="max-w-full max-h-full object-contain rounded-lg"
+                      onError={(e) => { e.currentTarget.style.display = 'none'; }}
                     />
                   ) : (
-                    <div className="flex items-center justify-center h-full">
-                      <Store className="w-16 h-16 text-white" />
-                    </div>
+                    <Store className="w-16 h-16 text-primary-300" />
                   )}
                   
                   {/* Badges */}

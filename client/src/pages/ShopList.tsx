@@ -98,19 +98,17 @@ const ShopList: React.FC = () => {
               to={`/shops/${shop.id}`}
               className="card overflow-hidden group flex flex-col"
             >
-              {/* Cover */}
-              <div className="relative h-32 bg-gradient-to-br from-primary-100 to-primary-100">
+              {/* Cover — логотип показываем целиком по центру, с отступами */}
+              <div className="relative h-32 bg-ink-50 flex items-center justify-center p-4 overflow-hidden">
                 {shop.logo_url ? (
                   <img
                     src={shop.logo_url}
                     alt={shop.name}
-                    className="w-full h-full object-cover"
+                    className="max-w-full max-h-full object-contain rounded-lg"
                     onError={(e) => { e.currentTarget.style.display = 'none'; }}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <Store className="w-12 h-12 text-primary-300" />
-                  </div>
+                  <Store className="w-12 h-12 text-primary-300" />
                 )}
                 {!!shop.is_premium && (
                   <span className="absolute top-2 left-2 bg-primary-500 text-white px-2 py-0.5 rounded-md text-[11px] font-bold">
