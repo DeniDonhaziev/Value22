@@ -117,27 +117,34 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Что-то пошло не так!' });
 });
 
-// Initialize database and start server
-initDatabase().then(() => {
-  app.listen(PORT, () => {
-    console.log('\n' + '='.repeat(60));
-    console.log('🎉 VALUE MARKETPLACE ЗАПУЩЕН!');
-    console.log('='.repeat(60));
-    console.log(`🚀 Сервер API: http://localhost:${PORT}`);
-    console.log(`🌐 Веб-приложение: http://localhost:3000`);
-    console.log(`📱 API Health Check: http://localhost:${PORT}/api/health`);
-    console.log('='.repeat(60));
-    console.log('📋 Доступные API endpoints:');
-    console.log(`   • Регистрация: POST http://localhost:${PORT}/api/auth/register`);
-    console.log(`   • Вход: POST http://localhost:${PORT}/api/auth/login`);
-    console.log(`   • Магазины: GET http://localhost:${PORT}/api/shops`);
-    console.log(`   • Товары: GET http://localhost:${PORT}/api/products`);
-    console.log(`   • Заказы: GET http://localhost:${PORT}/api/orders`);
-    console.log(`   • Сообщения: GET http://localhost:${PORT}/api/messages`);
-    console.log('='.repeat(60));
-    console.log('💡 Откройте http://localhost:3000 в браузере для доступа к приложению\n');
-  });
-}).catch(err => {
-  console.error('Ошибка инициализации базы данных:', err);
+// Сервер поднимаем СРАЗУ — чтобы платформа (Render) увидела открытый порт и деплой прошёл.
+// Базу инициализируем параллельно, с повторными попытками, и НЕ роняем процесс при ошибке.
+const server = app.listen(PORT, () => {
+  console.log('='.repeat(60));
+  console.log(`🚀 Сервер запущен на порту ${PORT}`);
+  console.log(`📱 Health Check: /api/health`);
+  console.log('='.repeat(60));
+});
+
+server.on('error', (err) => {
+  console.error('Ошибка запуска сервера:', err.message);
   process.exit(1);
 });
+
+const initWithRetry = async (attempt = 1) => {
+  try {
+    await initDatabase();
+    console.log('✅ БД готова к работе');
+  } catch (err) {
+    console.error(`⚠️  Ошибка инициализации БД (попытка ${attempt}/5):`, err.message);
+    if (attempt < 5) {
+      setTimeout(() => initWithRetry(attempt + 1), 3000);
+    } else {
+      console.error('❌ Не удалось подключиться к БД. Проверьте переменную DATABASE_URL. Сервер продолжает работать (статика доступна).');
+    }
+  }
+};
+initWithRetry();
+
+// Ловим необработанные ошибки, чтобы процесс не падал молча
+process.on('unhandledRejection', (reason) => console.error('unhandledRejection:', reason));
