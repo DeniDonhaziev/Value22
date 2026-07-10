@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Store, Plus, Phone, Mail, MapPin, Package, Users, Eye } from 'lucide-react';
 import axios from 'axios';
 import { useAuth } from '../contexts/AuthContext';
+import ImageUpload from '../components/ImageUpload';
 
 interface Product {
   id: number;
@@ -484,30 +485,13 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ shopId, onClose, onPr
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Изображение товара
               </label>
-              <div className="space-y-4">
-                <div className="relative">
-                  <input
-                    type="url"
-                    name="image_url"
-                    value={formData.image_url}
-                    onChange={handleChange}
-                    className="input w-full"
-                    placeholder="https://example.com/image.jpg"
-                  />
-                  <Plus className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                </div>
-                
-                {imagePreview && (
-                  <div className="relative">
-                    <img
-                      src={imagePreview}
-                      alt="Preview"
-                      className="w-full h-48 object-cover rounded-xl border-2 border-gray-200"
-                      onError={() => setImagePreview('')}
-                    />
-                  </div>
-                )}
-              </div>
+              <ImageUpload
+                onImageUpload={(url) => {
+                  setFormData({ ...formData, image_url: url });
+                  setImagePreview(url);
+                }}
+                currentImage={formData.image_url}
+              />
             </div>
 
             {/* Name */}

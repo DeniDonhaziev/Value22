@@ -132,6 +132,16 @@ const SCHEMA = [
     is_read INTEGER DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`,
+  // Таблица сообщений чата (используется маршрутами chats.js)
+  `CREATE TABLE IF NOT EXISTS messages_new (
+    id SERIAL PRIMARY KEY,
+    chat_id INTEGER NOT NULL,
+    sender_id INTEGER NOT NULL,
+    message TEXT NOT NULL,
+    is_read INTEGER DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )`,
+  `CREATE INDEX IF NOT EXISTS idx_messages_new_chat_id ON messages_new(chat_id)`,
   `CREATE INDEX IF NOT EXISTS idx_products_shop_id ON products(shop_id)`,
   `CREATE INDEX IF NOT EXISTS idx_orders_customer_id ON orders(customer_id)`,
   `CREATE INDEX IF NOT EXISTS idx_orders_shop_id ON orders(shop_id)`,

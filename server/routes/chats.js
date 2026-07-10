@@ -147,10 +147,10 @@ router.post('/', auth, async (req, res) => {
     console.log('Проверяем существующий чат для:', { buyer_id, seller_id, product_id });
     
     const existingChat = await db.get(`
-      SELECT * FROM chats 
-      WHERE buyer_id = ? AND seller_id = ? 
-      AND (product_id = ? OR (product_id IS NULL AND ? IS NULL))
-    `, [buyer_id, seller_id, product_id, product_id]);
+      SELECT * FROM chats
+      WHERE buyer_id = ? AND seller_id = ?
+      AND (product_id = ? OR (product_id IS NULL AND ?::int IS NULL))
+    `, [buyer_id, seller_id, product_id || null, product_id || null]);
     
     console.log('Найден существующий чат:', existingChat);
     
