@@ -10,8 +10,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  // На странице диалога прячем нижнюю навигацию (как в мессенджерах)
+  // Прячем нижнюю навигацию в диалоге и на страницах входа/регистрации
   const isConversation = location.pathname.startsWith('/chat/');
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register';
+  const hideBottomNav = isConversation || isAuthPage;
 
   const navigation = [
     { name: 'Главная', href: '/', icon: Home },
@@ -174,12 +176,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </header>
 
       {/* Main Content */}
-      <main className={`flex-1 ${isConversation ? '' : 'pb-28 md:pb-0'}`}>
+      <main className={`flex-1 ${hideBottomNav ? '' : 'pb-28 md:pb-0'}`}>
         {children}
       </main>
 
       {/* Mobile bottom navigation — плавающая чёрная пилюля (стиль DROPS) */}
-      <nav className={`${isConversation ? 'hidden' : 'md:hidden'} fixed bottom-4 left-1/2 -translate-x-1/2 z-50`}>
+      <nav className={`${hideBottomNav ? 'hidden' : 'md:hidden'} fixed bottom-4 left-1/2 -translate-x-1/2 z-50`}>
         <div className="flex items-center gap-1 bg-ink-900 rounded-full px-2 py-2 shadow-xl shadow-black/25">
           {[
             { name: 'Главная', href: '/', icon: Home },

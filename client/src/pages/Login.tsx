@@ -31,7 +31,7 @@ const Login: React.FC = () => {
       await login(formData.email, formData.password);
       navigate('/');
     } catch (error: any) {
-      setError(error.response?.data?.error || 'Ошибка входа');
+      setError(error.message || error.response?.data?.error || 'Ошибка входа');
     } finally {
       setLoading(false);
     }

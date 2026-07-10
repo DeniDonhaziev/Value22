@@ -57,7 +57,7 @@ const Register: React.FC = () => {
       await register(formData.name, formData.email, formData.password, formData.phone, formData.role);
       navigate('/');
     } catch (error: any) {
-      setError(error.response?.data?.error || 'Ошибка при регистрации');
+      setError(error.message || error.response?.data?.error || 'Ошибка при регистрации');
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import axios from 'axios';
-import { AuthProvider } from './contexts/AuthContext';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Layout from './components/Layout';
 import Search from './pages/Search';
 import Login from './pages/Login';
@@ -27,13 +27,26 @@ import ProtectedRoute from './components/ProtectedRoute';
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || '';
 axios.defaults.headers.common['Content-Type'] = 'application/json';
 
+// Стартовая страница: гость → регистрация, авторизованный → каталог
+const HomeRoute: React.FC = () => {
+  const { user, loading } = useAuth();
+  if (loading) {
+    return (
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="spinner w-10 h-10" />
+      </div>
+    );
+  }
+  return user ? <ProductList /> : <Navigate to="/register" replace />;
+};
+
 function App() {
   return (
     <AuthProvider>
       <Layout>
         <Routes>
-          {/* Стартовая страница — сразу каталог покупок */}
-          <Route path="/" element={<ProductList />} />
+          {/* Гость видит регистрацию, авторизованный — каталог */}
+          <Route path="/" element={<HomeRoute />} />
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
