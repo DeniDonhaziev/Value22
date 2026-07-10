@@ -35,15 +35,18 @@ const translate = (sql) => {
   return text;
 };
 
+// undefined в параметрах pg не переваривает — приводим к null
+const norm = (params) => (params || []).map((p) => (p === undefined ? null : p));
+
 // Совместимая обёртка с прежним API (db.get / db.all / db.run)
 const dbAsync = {
   get: async (sql, params = []) => {
-    const res = await pool.query(translate(sql), params);
+    const res = await pool.query(translate(sql), norm(params));
     return res.rows[0];
   },
 
   all: async (sql, params = []) => {
-    const res = await pool.query(translate(sql), params);
+    const res = await pool.query(translate(sql), norm(params));
     return res.rows;
   },
 
@@ -53,7 +56,7 @@ const dbAsync = {
     if (/^\s*INSERT/i.test(sql) && !/RETURNING/i.test(sql)) {
       text += ' RETURNING id';
     }
-    const res = await pool.query(text, params);
+    const res = await pool.query(text, norm(params));
     return {
       lastID: res.rows && res.rows[0] ? res.rows[0].id : undefined,
       changes: res.rowCount,
@@ -61,7 +64,7 @@ const dbAsync = {
     };
   },
 
-  query: (sql, params = []) => pool.query(translate(sql), params),
+  query: (sql, params = []) => pool.query(translate(sql), norm(params)),
   pool,
 };
 

@@ -42,9 +42,6 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, currentImage, 
 
     try {
       const response = await axios.post('/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
         onUploadProgress: (progressEvent) => {
           if (progressEvent.total) {
             const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);

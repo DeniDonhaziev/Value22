@@ -25,7 +25,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 // Настройка axios: в монолите фронт и API на одном домене → относительный путь.
 // Для раздельного деплоя задайте REACT_APP_API_URL (напр. https://api.example.com).
 axios.defaults.baseURL = process.env.REACT_APP_API_URL || '';
-axios.defaults.headers.common['Content-Type'] = 'application/json';
+// Content-Type НЕ задаём глобально: axios сам ставит application/json для объектов
+// и multipart/form-data с boundary для FormData (иначе ломается загрузка файлов).
 
 // Стартовая страница: гость → регистрация, авторизованный → каталог
 const HomeRoute: React.FC = () => {

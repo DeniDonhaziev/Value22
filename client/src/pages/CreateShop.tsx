@@ -76,17 +76,13 @@ const CreateShop: React.FC = () => {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post('/api/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const response = await axios.post('/api/upload', formData);
 
       setFormData(prev => ({
         ...prev,
-        logo_url: response.data.imageUrl
+        logo_url: response.data.fileUrl
       }));
-      setLogoPreview(response.data.imageUrl);
+      setLogoPreview(response.data.fileUrl);
     } catch (error: any) {
       console.error('Ошибка загрузки изображения:', error);
       setError('Ошибка при загрузке изображения');
