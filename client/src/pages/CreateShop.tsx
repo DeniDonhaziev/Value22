@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Store, Upload, MapPin, Phone, Mail, Clock, AlertCircle, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import axios from 'axios';
+import { imageToDataUrl } from '../utils/imageToDataUrl';
 
 interface ShopFormData {
   name: string;
@@ -73,18 +74,14 @@ const CreateShop: React.FC = () => {
       setLoading(true);
       setError('');
 
-      const formData = new FormData();
-      formData.append('image', file);
-
-      const response = await axios.post('/api/upload', formData);
-
+      const dataUrl = await imageToDataUrl(file);
       setFormData(prev => ({
         ...prev,
-        logo_url: response.data.fileUrl
+        logo_url: dataUrl
       }));
-      setLogoPreview(response.data.fileUrl);
+      setLogoPreview(dataUrl);
     } catch (error: any) {
-      console.error('Ошибка загрузки изображения:', error);
+      console.error('Ошибка обработки изображения:', error);
       setError('Ошибка при загрузке изображения');
     } finally {
       setLoading(false);

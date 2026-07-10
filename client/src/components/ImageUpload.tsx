@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon, Camera } from 'lucide-react';
-import axios from 'axios';
+import { imageToDataUrl } from '../utils/imageToDataUrl';
 
 interface ImageUploadProps {
   onImageUpload: (imageUrl: string) => void;
@@ -37,26 +37,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onImageUpload, currentImage, 
     setError('');
     setUploadProgress(0);
 
-    const formData = new FormData();
-    formData.append('image', file);
-
     try {
-      const response = await axios.post('/api/upload', formData, {
-        onUploadProgress: (progressEvent) => {
-          if (progressEvent.total) {
-            const progress = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-            setUploadProgress(progress);
-          }
-        },
-      });
-
-      if (response.data.success) {
-        onImageUpload(response.data.fileUrl);
-        setUploadProgress(100);
-      }
+      const dataUrl = await imageToDataUrl(file);
+      onImageUpload(dataUrl);
+      setUploadProgress(100);
     } catch (error: any) {
-      console.error('Ошибка загрузки:', error);
-      setError(error.response?.data?.error || 'Ошибка загрузки изображения');
+      console.error('Ошибка обработки изображения:', error);
+      setError(error.message || 'Ошибка загрузки изображения');
     } finally {
       setIsUploading(false);
       setUploadProgress(0);

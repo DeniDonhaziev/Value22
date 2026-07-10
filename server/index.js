@@ -64,6 +64,8 @@ const upload = multer({
 
 // Serve static files from uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Если файла нет — отдаём 404 (а не index.html через SPA-catch-all)
+app.use('/uploads', (req, res) => res.status(404).json({ error: 'Файл не найден' }));
 
 // Routes
 app.use('/api/auth', authRoutes);

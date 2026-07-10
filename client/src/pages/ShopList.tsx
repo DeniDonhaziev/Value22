@@ -101,7 +101,12 @@ const ShopList: React.FC = () => {
               {/* Cover */}
               <div className="relative h-32 bg-gradient-to-br from-primary-100 to-primary-100">
                 {shop.logo_url ? (
-                  <img src={shop.logo_url} alt={shop.name} className="w-full h-full object-cover" />
+                  <img
+                    src={shop.logo_url}
+                    alt={shop.name}
+                    className="w-full h-full object-cover"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                  />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
                     <Store className="w-12 h-12 text-primary-300" />
