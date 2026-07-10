@@ -402,6 +402,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ shopId, onClose, onPr
     name: '',
     description: '',
     price: '',
+    old_price: '',
     category: '',
     stock_quantity: '',
     image_url: ''
@@ -430,6 +431,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ shopId, onClose, onPr
       const response = await axios.post(`/api/shops/${shopId}/products`, {
         ...formData,
         price: parseFloat(formData.price),
+        old_price: formData.old_price ? parseFloat(formData.old_price) : null,
         stock_quantity: parseInt(formData.stock_quantity)
       });
       onProductAdded(response.data.product);
@@ -544,6 +546,23 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ shopId, onClose, onPr
                   className="input w-full"
                   placeholder="0.00"
                 />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">
+                  Цена до скидки (₽)
+                </label>
+                <input
+                  type="number"
+                  name="old_price"
+                  min="0"
+                  step="0.01"
+                  value={formData.old_price}
+                  onChange={handleChange}
+                  className="input w-full"
+                  placeholder="напр. 6 984"
+                />
+                <p className="text-xs text-gray-400 mt-1">Если указать выше цены — покажется скидка</p>
               </div>
 
               <div>

@@ -112,7 +112,7 @@ router.get('/:id/products', async (req, res) => {
 router.post('/:id/products', auth, async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, price, category, stock_quantity, image_url, contact_phone } = req.body;
+    const { name, description, price, category, stock_quantity, image_url, contact_phone, old_price } = req.body;
     const userId = req.user.id; // Получаем ID пользователя из токена
     
     // Валидация данных
@@ -133,9 +133,9 @@ router.post('/:id/products', auth, async (req, res) => {
     
     // Добавляем товар
     const result = await db.run(`
-      INSERT INTO products (shop_id, name, description, price, category, stock_quantity, image_url, contact_phone, is_active, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, 1, datetime('now'))
-    `, [id, name, description, price, category, stock_quantity, image_url || null, contact_phone || null]);
+      INSERT INTO products (shop_id, name, description, price, old_price, category, stock_quantity, image_url, contact_phone, is_active, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 1, datetime('now'))
+    `, [id, name, description, price, old_price || null, category, stock_quantity, image_url || null, contact_phone || null]);
     
     // Получаем добавленный товар
     const product = await db.get('SELECT * FROM products WHERE id = ?', [result.lastID]);

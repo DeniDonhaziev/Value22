@@ -234,7 +234,10 @@ const ProductList: React.FC = () => {
                     {hasOld && (
                       <span className="bg-red-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-md">−{discount}%</span>
                     )}
-                    {!!product.shop?.is_premium && (
+                    {hasOld && (
+                      <span className="bg-pink-600 text-white text-[10px] font-extrabold px-2 py-0.5 rounded-md uppercase tracking-wide">Скидка</span>
+                    )}
+                    {!hasOld && !!product.shop?.is_premium && (
                       <span className="bg-primary-500 text-white text-[11px] font-bold px-2 py-0.5 rounded-md">Хит</span>
                     )}
                     {lowStock && (
@@ -269,7 +272,7 @@ const ProductList: React.FC = () => {
                     <Star className="w-3.5 h-3.5 text-amber-400 fill-current shrink-0" />
                     <span className="font-semibold text-ink-700">{rating.toFixed(1)}</span>
                     <span className="text-ink-400 truncate">
-                      · {reviews != null ? `${reviews} оценок` : product.shop?.name}
+                      · {reviews && reviews > 0 ? `${reviews} оценок` : product.shop?.name}
                     </span>
                   </div>
                 </Link>

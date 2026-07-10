@@ -142,6 +142,10 @@ const SCHEMA = [
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`,
   `CREATE INDEX IF NOT EXISTS idx_messages_new_chat_id ON messages_new(chat_id)`,
+  // Доп. поля товара для витрины в стиле маркетплейса (скидки, рейтинг, отзывы)
+  `ALTER TABLE products ADD COLUMN IF NOT EXISTS old_price NUMERIC(10,2)`,
+  `ALTER TABLE products ADD COLUMN IF NOT EXISTS rating NUMERIC(2,1) DEFAULT 4.8`,
+  `ALTER TABLE products ADD COLUMN IF NOT EXISTS reviews_count INTEGER DEFAULT 0`,
   `CREATE INDEX IF NOT EXISTS idx_products_shop_id ON products(shop_id)`,
   `CREATE INDEX IF NOT EXISTS idx_orders_customer_id ON orders(customer_id)`,
   `CREATE INDEX IF NOT EXISTS idx_orders_shop_id ON orders(shop_id)`,
