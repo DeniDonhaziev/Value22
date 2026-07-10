@@ -46,10 +46,12 @@ router.get('/', async (req, res) => {
 });
 
 // Получить магазин по ID
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
+  // Если :id не число — это не запрос магазина по ID (напр. /my-shops), пропускаем дальше
+  if (!/^\d+$/.test(req.params.id)) return next();
   try {
     const { id } = req.params;
-    
+
     console.log('Запрос магазина ID:', id);
     
     const query = `
